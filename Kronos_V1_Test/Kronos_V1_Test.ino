@@ -57,6 +57,11 @@ void setup() {
   // Initialize LED Strips
   FastLED.addLeds<WS2812B, LED_PIN_75, GRB>(leds_75, NUM_LEDS_75);
   FastLED.addLeds<WS2812B, LED_PIN_6, GRB>(leds_6, NUM_LEDS_6);
+  FastLED.setBrightness(25);
+
+    // LED Strip Animation
+  rainbowCycle(leds_75, NUM_LEDS_75);
+  solidColor(leds_6, NUM_LEDS_6, CRGB::Blue);
 }
 
 void loop() {
@@ -93,20 +98,16 @@ void loop() {
   oled.println(ads2_ch2);
   oled.display();
 
-  // LED Strip Animation
-  rainbowCycle(leds_75, NUM_LEDS_75);
-  solidColor(leds_6, NUM_LEDS_6, CRGB::Blue);
 
-  delay(500);  // Update interval
+
+  delay(1);  // Update interval
 }
 
 void rainbowCycle(CRGB* leds, int numLeds) {
-  static uint8_t hue = (rand() % 100);
   for(int i = 0; i < numLeds; i++) {
-    leds[i] = CHSV(hue + (i * 10), 255, 255);
+    leds[i] = CHSV(255, 255, 255);
   }
   FastLED.show();
-  hue++;
 }
 
 void solidColor(CRGB* leds, int numLeds, CRGB color) {
