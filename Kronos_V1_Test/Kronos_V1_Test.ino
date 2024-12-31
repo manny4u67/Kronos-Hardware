@@ -113,6 +113,7 @@ void rainbowCycle(CRGB* leds, int numLeds) {
 void solidColor(CRGB* leds, int numLeds, CRGB color) {
   for(int i = 0; i < numLeds; i++) {
     leds[i] = color;
+    delay(10)
   }
   FastLED.show();
 }
